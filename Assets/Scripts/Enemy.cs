@@ -6,12 +6,13 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] int health = 1;
     [SerializeField] float speed = 1;
+    [SerializeField] int scorePoint = 100;
     Transform player;
 
     private void Start()
     {
         player = FindObjectOfType<Player>().transform;
-        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpwnPoint");
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
         transform.position = spawnPoints[randomSpawnPoint].transform.position;
     }
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
         health--;
         if(health <= 0)
         {
+            GameManager.Instance.Score += scorePoint;
             Destroy(gameObject);
         }
     }
