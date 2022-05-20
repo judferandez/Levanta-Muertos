@@ -26,17 +26,18 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUIHealth(int newHealth)
     {
-        scoreText.text = newHealth.ToString();
+        healthText.text = newHealth.ToString();
     }
 
     public void UpdateUITime(int newTime)
     {
-        scoreText.text = newTime.ToString();
+        timeText.text = newTime.ToString();
     }
 
     public void ShowGameOverScreen()
     {
+        Time.timeScale = 0;
         gameOverScreen.SetActive(true);
-        finalScore.text = "" + GameManager.Instance.Score;
+        finalScore.text = "Score: " + GameManager.Instance.Score;
     }
 }

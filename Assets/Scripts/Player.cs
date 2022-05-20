@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     bool gunLoaded = true;
     float h;
     float v;
+    public float speed = 2.5f;
     [SerializeField] float fireRate = 1;
-    [SerializeField] float speed = 2.5f;
     [SerializeField] float invulnerableTime = 3;
     [SerializeField] int health = 10;
     bool powerShotEnabled;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         set
         {
             health = value;
-            //UIManager.Instance.UpdateUIHealth(health);
+            UIManager.Instance.UpdateUIHealth(health);
         }
     }
     // Start is called before the first frame update
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         if (Health <= 0)
         {
             GameManager.Instance.gameOver = true;
-            //UIManager.Instance.ShowGameOverScreen();
+            UIManager.Instance.ShowGameOverScreen();
         }
     }
 
