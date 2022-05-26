@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text scoreText;
     [SerializeField] Text timeText;
     [SerializeField] Text finalScore;
+    [SerializeField] Text ammoText;
+    [SerializeField] AudioClip gameOverClip;
     [SerializeField] GameObject gameOverScreen;
 
     public void Awake()
@@ -34,8 +36,14 @@ public class UIManager : MonoBehaviour
         timeText.text = newTime.ToString();
     }
 
+    public void UpdateUIAmmo(int newAmmo)
+    {
+        ammoText.text = newAmmo.ToString();
+    }
+
     public void ShowGameOverScreen()
     {
+        AudioSource.PlayClipAtPoint(gameOverClip, transform.position);
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
         finalScore.text = "Score: " + GameManager.Instance.Score;

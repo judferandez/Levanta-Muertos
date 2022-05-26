@@ -18,7 +18,10 @@ public class River : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player.speed *= speedReductionRatio;
+            while (player.speed > 1)
+            {
+                player.speed *= speedReductionRatio;
+            }
         }
     }
 
