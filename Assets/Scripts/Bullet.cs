@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//holi
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed = 8;
