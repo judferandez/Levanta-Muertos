@@ -5,19 +5,30 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     bool gunLoaded = true;
+    bool powerShotEnabled;
     float h;
     float v;
-    [SerializeField] float fireRate = 1;
-    [SerializeField] float speed = 2.5f;
-    [SerializeField] float invulnerableTime = 3;
-    [SerializeField] int health = 10;
-    bool powerShotEnabled;
-    [SerializeField] bool invulnerable;
+    public float speed = 2.5f;
+
     Vector3 moveDirection;
     Vector2 facingDirection;
+
+    [SerializeField] float fireRate = 5;
+    [SerializeField] float fireRateTime = 6;
+    [SerializeField] float invulnerableTime = 3;
+    [SerializeField] float powerShootTime = 5;
+    [SerializeField] int maxAmountOfBullets = 120;
+    [SerializeField] int minAmountOfBullets = 30;
+    [SerializeField] int health = 10;
+    [SerializeField] int ammo = 60;
+    [SerializeField] float blinkRate = 0.01f;
+    [SerializeField] bool invulnerable;
     [SerializeField] Transform aim;
     [SerializeField] Camera mainCamera;
     [SerializeField] Transform bulletPrefab;
+    [SerializeField] Animator anim;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] AudioClip itemClip;
 
     public int Health
     {
@@ -25,25 +36,30 @@ public class Player : MonoBehaviour
         set
         {
             health = value;
-            //UIManager.Instance.UpdateUIHealth(health);
+            UIManager.Instance.UpdateUIHealth(health);
+        }
+    }
+
+    public int Ammo
+    {
+        get=> ammo;
+        set
+        {
+            ammo = value;
+            UIManager.Instance.UpdateUIAmmo(ammo);
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Player Movement
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        ReadInput();
 
-        moveDirection.x = h;
-        moveDirection.y = v;
-
+        // Player movement
         transform.position += moveDirection * Time.deltaTime * speed;
 
         // Aim Movement
@@ -51,18 +67,47 @@ public class Player : MonoBehaviour
         aim.position = transform.position + (Vector3)facingDirection.normalized;
 
         // Shooting Control
-        if (Input.GetMouseButton(0) && gunLoaded)
+        if (Input.GetMouseButton(0) && gunLoaded && Ammo > 0)
         {
-            gunLoaded = false;
-            float angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            Transform bulletClone = Instantiate(bulletPrefab, transform.position, targetRotation);
-            if (powerShotEnabled)
-            {
-                bulletClone.GetComponent<Bullet>().powerShot = true;
-            }
-            StartCoroutine(ReloadGun());
+            Shoot();
         }
+        UpdatePlayerGraphics();
+    }
+
+    void UpdatePlayerGraphics()
+    {
+        anim.SetFloat("Speed", moveDirection.magnitude);
+        if (aim.position.x > transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (aim.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+    void Shoot()
+    {
+        gunLoaded = false;
+        float angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Transform bulletClone = Instantiate(bulletPrefab, transform.position, targetRotation);
+        if (powerShotEnabled)
+        {
+            bulletClone.GetComponent<Bullet>().powerShot = true;
+        }
+        Ammo--;
+        StartCoroutine(ReloadGun());
+    }
+
+    void ReadInput()
+    {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        moveDirection.x = h;
+        moveDirection.y = v;
     }
 
     IEnumerator ReloadGun()
@@ -85,7 +130,7 @@ public class Player : MonoBehaviour
         if (Health <= 0)
         {
             GameManager.Instance.gameOver = true;
-            //UIManager.Instance.ShowGameOverScreen();
+            UIManager.Instance.ShowGameOverScreen();
         }
     }
 
@@ -96,33 +141,55 @@ public class Player : MonoBehaviour
             switch (collision.GetComponent<PowerUp>().powerUpType)
             {
                 case PowerUp.PowerUpType.FireRateIncrease:
-                    fireRate++;
+                    fireRate +=3;
+                    StartCoroutine(DisableFireIncrease());
                     break;
                 case PowerUp.PowerUpType.PowerShot:
                     powerShotEnabled = true;
+                    StartCoroutine(DisablePowerShoot());
+                    break;
+                case PowerUp.PowerUpType.Ammobox:
+                    int randomAmountOfBullets = Random.Range(minAmountOfBullets, maxAmountOfBullets);
+                    Ammo += randomAmountOfBullets;
+                    break;
+                case PowerUp.PowerUpType.Medkit:
+                    Health++;
                     break;
             }
+            AudioSource.PlayClipAtPoint(itemClip, transform.position);
             Destroy(collision.gameObject, 0.1f);
-        }
-        if(collision.CompareTag("Water"))
-        {
-            speed = 0.3f;
-            StartCoroutine(MakeDriedAgain());
         }
     }
 
     IEnumerator MakeVulnerableAgain()
     {
+        StartCoroutine(BlinkRoutine());
         yield return new WaitForSeconds(invulnerableTime);
         invulnerable = false;
     }
 
-    IEnumerator MakeDriedAgain()
+    IEnumerator BlinkRoutine()
     {
-        while(speed < 2.5f)
+        int numberOfBlinks = 10;
+        while (numberOfBlinks > 0)
         {
-            yield return new WaitForSeconds(0.2f);
-            speed = speed + 0.1f;
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(numberOfBlinks * blinkRate);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(numberOfBlinks * blinkRate);
+            numberOfBlinks--;
         }
+    }
+
+    IEnumerator DisablePowerShoot()
+    {
+        yield return new WaitForSeconds(powerShootTime);
+        powerShotEnabled = false;
+    }
+
+    IEnumerator DisableFireIncrease()
+    {
+        yield return new WaitForSeconds(fireRateTime);
+        fireRate--;
     }
 }

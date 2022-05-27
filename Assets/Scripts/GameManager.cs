@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public int time = 30;
-    public int difficulty = 1;
+    public int gameTime = 60;
+    public float difficulty = 0.1f;
     public bool gameOver;
     [SerializeField] int score;
 
@@ -17,11 +17,21 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            //UIManager.Instance.UpdateUIScore(score);
-            if(score % 1000 == 0)
+            UIManager.Instance.UpdateUIScore(score);
+            if (score % 1000 == 0)
             {
                 difficulty++;
             }
+        }
+    }
+
+    public int GameTime
+    {
+        get => gameTime;
+        set
+        {
+            gameTime = value;
+            UIManager.Instance.UpdateUITime(gameTime);
         }
     }
 
@@ -35,23 +45,25 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        UIManager.Instance.UpdateUITime(GameTime);
         StartCoroutine(CountdownRoutine());
     }
 
     IEnumerator CountdownRoutine()
     {
-        while (time > 0)
+        while (GameTime > 0)
         {
             yield return new WaitForSeconds(1);
-            time--;
+            GameTime--;
         }
 
         gameOver = true;
-        //UIManager.Instance.ShowGameOverScreen();
+        UIManager.Instance.ShowGameOverScreen();
     }
 
     public void PlayAgain()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Game");
     }
 }

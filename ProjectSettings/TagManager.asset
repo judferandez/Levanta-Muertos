@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - SpawnPoint
   - PowerUp
-  - Water
+  - Wall
   layers:
   - Default
   - TransparentFX
