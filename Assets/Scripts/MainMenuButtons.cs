@@ -1,22 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public void SinglePlayer(){
+        SceneManager.LoadScene("Game");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void SinglePlayer(){
-        
+    public void Multiplayer(){
+        SceneManager.LoadScene("Loading");
     }
 }
