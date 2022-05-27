@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1165363668555880957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 1868163626200638388}
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 2
-  scorePoint: 100
+  scorePoint: 10
   impactClip: {fileID: 8300000, guid: de9e33dbe81a91342af9c9c7fdbd5680, type: 3}
   enemyDeathClip: {fileID: 8300000, guid: 067a7c8d65717ab479c9ec99eb4abc8f, type: 3}
 --- !u!50 &1165363668555880832

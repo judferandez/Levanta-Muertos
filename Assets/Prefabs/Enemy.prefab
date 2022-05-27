@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 801490698181282914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 1698371043537364232}
   m_Father: {fileID: 0}
@@ -47,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.80981433, y: 0.045796543}
+  m_Offset: {x: -0.0025010258, y: 0.03311998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19901961, y: 0.20809346}
+  m_Size: {x: 0.22440463, y: 0.2334466}
   m_EdgeRadius: 0
 --- !u!114 &801490698181282915
 MonoBehaviour:
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   speed: 2
-  scorePoint: 100
+  scorePoint: 5
   impactClip: {fileID: 8300000, guid: de9e33dbe81a91342af9c9c7fdbd5680, type: 3}
   enemyDeathClip: {fileID: 8300000, guid: 067a7c8d65717ab479c9ec99eb4abc8f, type: 3}
 --- !u!50 &801490698181282847
@@ -124,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166657415035730586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.81, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 801490698181282846}
