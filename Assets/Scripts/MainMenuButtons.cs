@@ -15,4 +15,8 @@ public class MainMenuButtons : MonoBehaviour
     {
         
     }
+
+    void SinglePlayer(){
+        
+    }
 }
