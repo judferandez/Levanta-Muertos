@@ -1957,7 +1957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &272690555
 Transform:
   m_ObjectHideFlags: 0
@@ -6933,7 +6933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &788735171
 Grid:
   m_ObjectHideFlags: 0
@@ -7168,7 +7168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &819405295
 Transform:
   m_ObjectHideFlags: 0
@@ -102240,7 +102240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1752342006
 Transform:
   m_ObjectHideFlags: 0
@@ -103150,7 +103150,11 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
+<<<<<<< HEAD
+  m_Follow: {fileID: 9175439211391114543, guid: 8bdc425ba6d124e0aa467fec9d36e98f, type: 3}
+=======
   m_Follow: {fileID: 538319910}
+>>>>>>> parent of 4936faf (no se por que tanta vaina)
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5

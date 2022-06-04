@@ -90,6 +90,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+example.app*
+
 © 2022 GitHub, Inc.
 Terms
 Privacy

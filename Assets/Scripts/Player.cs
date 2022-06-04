@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
 
     Vector3 moveDirection;
     Vector2 facingDirection;
+    PhotonView view;
+
 
     [SerializeField] float fireRate = 5;
     [SerializeField] float fireRateTime = 6;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] AudioClip itemClip;
+
 
     public int Health
     {
@@ -52,26 +56,31 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        view = GetComponent<PhotonView>();
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ReadInput();
+        if(view.IsMine){
+            ReadInput();
 
-        // Player movement
-        transform.position += moveDirection * Time.deltaTime * speed;
+            // Player movement
+            transform.position += moveDirection * Time.deltaTime * speed;
 
-        // Aim Movement
-        facingDirection = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        aim.position = transform.position + (Vector3)facingDirection.normalized;
+            // Aim Movement
+            facingDirection = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            aim.position = transform.position + (Vector3)facingDirection.normalized;
 
-        // Shooting Control
-        if (Input.GetMouseButton(0) && gunLoaded && Ammo > 0)
-        {
-            Shoot();
+            // Shooting Control
+            if (Input.GetMouseButton(0) && gunLoaded && Ammo > 0)
+            {
+                Shoot();
+            }
+            UpdatePlayerGraphics();
         }
-        UpdatePlayerGraphics();
+        
     }
 
     void UpdatePlayerGraphics()
