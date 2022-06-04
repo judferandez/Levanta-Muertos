@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] AudioClip itemClip;
+    [SerializeField] CinemachineVirtualCamera vcam;
 
 
     public int Health
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
     {
         view = GetComponent<PhotonView>();
         mainCamera = Camera.main;
+        vcam.Follow = transform;
     }
 
     // Update is called once per frame
