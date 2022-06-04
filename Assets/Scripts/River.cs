@@ -11,7 +11,7 @@ public class River : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        originalSpeed = player.speed;
+        //originalSpeed = player.speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
