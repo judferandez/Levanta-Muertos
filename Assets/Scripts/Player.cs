@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] bool invulnerable;
     [SerializeField] Transform aim;
     [SerializeField] Camera mainCamera;
-    [SerializeField] Transform bulletPrefab;
+    [SerializeField] GameObject bulletPrefab;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] AudioClip itemClip;
@@ -61,12 +61,15 @@ public class Player : MonoBehaviour
         view = GetComponent<PhotonView>();
         mainCamera = Camera.main;
         vcam.Follow = transform;
+        vcam.LookAt = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(view.IsMine){
+            vcam.Follow = transform;
+            vcam.LookAt = transform;
             ReadInput();
 
             // Player movement
@@ -104,7 +107,8 @@ public class Player : MonoBehaviour
         gunLoaded = false;
         float angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        Transform bulletClone = Instantiate(bulletPrefab, transform.position, targetRotation);
+        GameObject bulletClone = PhotonNetwork.Instantiate(bulletPrefab.name,transform.position,targetRotation);
+        Transform bulletClonetransform = bulletClone.GetComponent<Transform>();
         if (powerShotEnabled)
         {
             bulletClone.GetComponent<Bullet>().powerShot = true;

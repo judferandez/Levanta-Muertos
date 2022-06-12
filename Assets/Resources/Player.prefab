@@ -170,6 +170,7 @@ MonoBehaviour:
   anim: {fileID: 4095441965305218223}
   spriteRenderer: {fileID: 4095441965305218240}
   itemClip: {fileID: 8300000, guid: d8a5b82168e1f384ba245d490355197c, type: 3}
+  vcam: {fileID: 4095441965959455713}
 --- !u!61 &4095441965305218215
 BoxCollider2D:
   m_ObjectHideFlags: 0

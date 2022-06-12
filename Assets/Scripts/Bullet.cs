@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 //holi
 public class Bullet : MonoBehaviour
@@ -8,15 +9,26 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed = 8;
     [SerializeField] int health = 3;
     public bool powerShot;
+    PhotonView view;
+    float time;
 
     private void Start()
     {
-        Destroy(gameObject, 5);
+        view = GetComponent<PhotonView>();
+        time = 0;
+        
     }
 
     void Update()
     {
-        transform.position += transform.right * Time.deltaTime * speed;
+        if(view.IsMine){
+            transform.position += transform.right * Time.deltaTime * speed;
+        }
+        time += Time.deltaTime;
+        if(time>5){
+            PhotonNetwork.Destroy(gameObject);
+        } 
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,18 +39,18 @@ public class Bullet : MonoBehaviour
 
             if (!powerShot)
             {
-                Destroy(gameObject);
+                PhotonNetwork.Destroy(gameObject);
             }
             health--;
 
             if(health <= 0)
             {
-                Destroy(gameObject);
+                PhotonNetwork.Destroy(gameObject);
             }
         }
         if (collision.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }
