@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     public bool powerShot;
     PhotonView view;
     float time;
+    int viewID;
 
     private void Start()
     {
@@ -23,11 +24,12 @@ public class Bullet : MonoBehaviour
     {
         if(view.IsMine){
             transform.position += transform.right * Time.deltaTime * speed;
+            time += Time.deltaTime;
+            if(time>5){
+                PhotonNetwork.Destroy(gameObject);
+            } 
         }
-        time += Time.deltaTime;
-        if(time>5){
-            PhotonNetwork.Destroy(gameObject);
-        } 
+        
         
     }
 
@@ -35,22 +37,30 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            viewID = collision.GetComponent<PhotonView>().ViewID;
             collision.GetComponent<Enemy>().TakeDamage();
 
             if (!powerShot)
             {
-                PhotonNetwork.Destroy(gameObject);
+                photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
             }
             health--;
 
             if(health <= 0)
             {
-                PhotonNetwork.Destroy(gameObject);
+                photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
             }
         }
         if (collision.CompareTag("Wall"))
         {
-            PhotonNetwork.Destroy(gameObject);
+            photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
         }
+    }
+
+
+    [PunRPC]
+    public void DestroyBullet(int viewID)
+    {
+        PhotonNetwork.Destroy(PhotonView.Find(viewID).gameObject);
     }
 }

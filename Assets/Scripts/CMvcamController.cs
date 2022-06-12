@@ -7,7 +7,7 @@ public class CMvcamController : MonoBehaviour
 
     // Start is called before the first frame update
 
-    //CinemachineVirtualCamera vcam;
+    // CinemachineVirtualCamera vcam;
     void Start()
     {
         /*vcam = GetComponent<CinemachineVirtualCamera>();
