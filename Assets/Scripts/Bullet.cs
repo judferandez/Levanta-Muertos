@@ -66,6 +66,6 @@ public class Bullet : MonoBehaviour
     [PunRPC]
     public void DestroyBullet(int viewID)
     {
-        PhotonNetwork.Destroy(PhotonView.Find(viewID).gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 }
