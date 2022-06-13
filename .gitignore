@@ -84,8 +84,7 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# PhotonAssets
-[Aa]ssets/Photon*
+
 
 # Crashlytics generated file
 crashlytics-build.properties
