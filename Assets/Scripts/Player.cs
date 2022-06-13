@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Cinemachine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks
 {
     bool gunLoaded = true;
     bool powerShotEnabled;
@@ -60,8 +60,11 @@ public class Player : MonoBehaviour
     {
         view = GetComponent<PhotonView>();
         mainCamera = Camera.main;
-        vcam.Follow = transform;
-        vcam.LookAt = transform;
+        if (photonView.IsMine)
+        {
+            vcam.Follow = transform;
+            vcam.LookAt = transform;
+        }
     }
 
     // Update is called once per frame
