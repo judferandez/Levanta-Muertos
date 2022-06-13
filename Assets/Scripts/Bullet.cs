@@ -12,11 +12,13 @@ public class Bullet : MonoBehaviour
     PhotonView view;
     float time;
     int viewID;
+    PhotonView photonView;
 
     private void Start()
     {
         view = GetComponent<PhotonView>();
         time = 0;
+        photonView = PhotonView.Get(this);
         
     }
 
@@ -26,7 +28,8 @@ public class Bullet : MonoBehaviour
             transform.position += transform.right * Time.deltaTime * speed;
             time += Time.deltaTime;
             if(time>5){
-                PhotonNetwork.Destroy(gameObject);
+                viewID = view.ViewID;
+                photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
             } 
         }
         
@@ -35,10 +38,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        PhotonView photonView = PhotonView.Get(this);
         if (collision.CompareTag("Enemy"))
         {
-            viewID = collision.GetComponent<PhotonView>().ViewID;
+            viewID = view.ViewID;
             collision.GetComponent<Enemy>().TakeDamage();
+            
 
             if (!powerShot)
             {
