@@ -166,7 +166,7 @@ MonoBehaviour:
   invulnerable: 0
   aim: {fileID: 4095441965305218855}
   mainCamera: {fileID: 0}
-  bulletPrefab: {fileID: 1101781292127377022, guid: 642c1fe4174c5684a84ca77c9dd2bf20, type: 3}
+  bulletPrefab: {fileID: 1955639797024324009, guid: 642c1fe4174c5684a84ca77c9dd2bf20, type: 3}
   anim: {fileID: 4095441965305218223}
   spriteRenderer: {fileID: 4095441965305218240}
   itemClip: {fileID: 8300000, guid: d8a5b82168e1f384ba245d490355197c, type: 3}
@@ -237,6 +237,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 4095441965305218068}
   - {fileID: 4095441965305218288}
   - {fileID: 4095441965305218067}
   sceneViewId: 0

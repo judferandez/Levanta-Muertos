@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Cinemachine;
 
-public class Player : MonoBehaviourPunCallbacks
+public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     bool gunLoaded = true;
     bool powerShotEnabled;
@@ -84,15 +84,18 @@ public class Player : MonoBehaviourPunCallbacks
 
             // Aim Movement
             facingDirection = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            aim.position = transform.position + (Vector3)facingDirection.normalized;
 
             // Shooting Control
             if (Input.GetMouseButton(0) && gunLoaded && Ammo > 0)
             {
                 Shoot();
             }
-            UpdatePlayerGraphics();
         }
+        
+        
+        //Update Graphics: This should be done on all clients
+        aim.position = transform.position + (Vector3)facingDirection.normalized;
+        UpdatePlayerGraphics();
         
     }
 
@@ -213,5 +216,21 @@ public class Player : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(fireRateTime);
         fireRate--;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //Send data to other clients
+        if (stream.IsWriting)
+        {
+            stream.SendNext(moveDirection);
+            stream.SendNext(facingDirection);
+        }
+        //Copy data from
+        else if(stream.IsReading)
+        {
+            moveDirection = (Vector3) stream.ReceiveNext();
+            facingDirection = (Vector2) stream.ReceiveNext();
+        }
     }
 }
