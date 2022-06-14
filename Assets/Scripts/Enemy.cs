@@ -40,20 +40,10 @@ public class Enemy : MonoBehaviour
         }
         
     }
-    
+
     public void TakeDamage()
     {
-        if(view.IsMine){
-            health--;
-            AudioSource.PlayClipAtPoint(impactClip, transform.position);
-            if(health <= 0)
-            {
-                GameManager.Instance.Score += scorePoint;
-                AudioSource.PlayClipAtPoint(enemyDeathClip, transform.position);
-                PhotonNetwork.Destroy(gameObject);
-            }
-        }
-        
+        view.RPC("OnTakeDamage", RpcTarget.AllViaServer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,6 +54,25 @@ public class Enemy : MonoBehaviour
                 collision.GetComponent<Player>().TakeDamage();
             }
         }
-        
     }
+
+    [PunRPC]
+    public void OnTakeDamage()
+    {
+        AudioSource.PlayClipAtPoint(impactClip, transform.position);
+
+        if (view.IsMine)
+        {
+            health--;
+            if (health <= 0)
+            {
+                //Ths need to be done on all clients -> Move this to a new RPC?
+                GameManager.Instance.Score += scorePoint;
+                AudioSource.PlayClipAtPoint(enemyDeathClip, transform.position);
+                //
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
+    }
+
 }
