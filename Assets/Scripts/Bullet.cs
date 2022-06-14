@@ -4,32 +4,34 @@ using UnityEngine;
 using Photon.Pun;
 
 //holi
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviourPunCallbacks
 {
     [SerializeField] float speed = 8;
     [SerializeField] int health = 3;
     public bool powerShot;
     PhotonView view;
-    float time;
-    int viewID;
-    PhotonView photonView;
+    float time = 0;
+
+    //Avoid calling the Destroy method twice
+    private bool _isDestroyed = false;
 
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        time = 0;
-        photonView = PhotonView.Get(this);
-        
     }
 
     void Update()
     {
+        if (_isDestroyed)
+        {
+            return;
+        }
+        
         if(view.IsMine){
             transform.position += transform.right * Time.deltaTime * speed;
             time += Time.deltaTime;
-            if(time>5){
-                viewID = view.ViewID;
-                photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
+            if(time > 5){
+                DestroyBullet();
             } 
         }
         
@@ -38,34 +40,32 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (_isDestroyed || view == null || !view.IsMine)
+        {
+            return;
+        }
+        
         PhotonView photonView = PhotonView.Get(this);
         if (collision.CompareTag("Enemy"))
         {
-            viewID = view.ViewID;
             collision.GetComponent<Enemy>().TakeDamage();
-            
-
-            if (!powerShot)
-            {
-                photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
-            }
             health--;
 
-            if(health <= 0)
+            if(!powerShot || health <= 0)
             {
-                photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
+                DestroyBullet();
             }
         }
+        
         if (collision.CompareTag("Wall"))
         {
-            photonView.RPC("DestroyBullet", RpcTarget.MasterClient, viewID);
+            DestroyBullet();
         }
     }
-
-
-    [PunRPC]
-    public void DestroyBullet(int viewID)
+    
+    void DestroyBullet()
     {
+        _isDestroyed = true;
         PhotonNetwork.Destroy(gameObject);
     }
 }

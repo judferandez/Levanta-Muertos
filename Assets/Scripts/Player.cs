@@ -111,7 +111,6 @@ public class Player : MonoBehaviourPunCallbacks
         float angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         GameObject bulletClone = PhotonNetwork.Instantiate(bulletPrefab.name,transform.position,targetRotation);
-        Transform bulletClonetransform = bulletClone.GetComponent<Transform>();
         if (powerShotEnabled)
         {
             bulletClone.GetComponent<Bullet>().powerShot = true;
