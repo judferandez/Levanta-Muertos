@@ -60,10 +60,14 @@ public class Player : MonoBehaviourPunCallbacks
     {
         view = GetComponent<PhotonView>();
         mainCamera = Camera.main;
-        if (photonView.IsMine)
+        if (view.IsMine)
         {
+            vcam.gameObject.SetActive(true);
             vcam.Follow = transform;
             vcam.LookAt = transform;
+        }
+        else{
+            vcam.gameObject.SetActive(false);
         }
     }
 
