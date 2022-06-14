@@ -15,8 +15,14 @@ public class EnemySpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemy());
+        //If I'm no the host -> Do nothing
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        StartCoroutine(SpawnEnemy());
     }
 
     IEnumerator SpawnEnemy()
