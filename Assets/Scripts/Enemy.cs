@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] int health = 1;
     [SerializeField] float speed = 2;
-    [SerializeField] int scorePoint = 100;
+    [SerializeField] int scorePoint = 5;
     [SerializeField] AudioClip impactClip;
     [SerializeField] AudioClip enemyDeathClip;
     GameObject[] players;
@@ -21,12 +21,13 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        view = view = GetComponent<PhotonView>();
+        view = GetComponent<PhotonView>();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         if(view.IsMine){
             direction = players[0].transform.position-transform.position;
             for(int i=1;i<players.Length;i++){
@@ -41,9 +42,11 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void TakeDamage()
+    public int TakeDamage()
     {
+        //int viewId = Player.GetComponent<PhotonView>().ViewID;
         view.RPC("OnTakeDamage", RpcTarget.AllViaServer);
+        return scorePoint;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -67,7 +70,7 @@ public class Enemy : MonoBehaviour
             if (health <= 0)
             {
                 //Ths need to be done on all clients -> Move this to a new RPC?
-                GameManager.Instance.Score += scorePoint;
+                //GameManager.Instance.Score += scorePoint;
                 AudioSource.PlayClipAtPoint(enemyDeathClip, transform.position);
                 //
                 PhotonNetwork.Destroy(gameObject);

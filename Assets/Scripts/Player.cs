@@ -161,28 +161,31 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PowerUp"))
-        {
-            switch (collision.GetComponent<PowerUp>().powerUpType)
+        if(view.IsMine){
+            if (collision.CompareTag("PowerUp"))
             {
-                case PowerUp.PowerUpType.FireRateIncrease:
-                    fireRate +=3;
-                    StartCoroutine(DisableFireIncrease());
-                    break;
-                case PowerUp.PowerUpType.PowerShot:
-                    powerShotEnabled = true;
-                    StartCoroutine(DisablePowerShoot());
-                    break;
-                case PowerUp.PowerUpType.Ammobox:
-                    int randomAmountOfBullets = Random.Range(minAmountOfBullets, maxAmountOfBullets);
-                    Ammo += randomAmountOfBullets;
-                    break;
-                case PowerUp.PowerUpType.Medkit:
-                    Health++;
-                    break;
+                switch (collision.GetComponent<PowerUp>().powerUpType)
+                {
+                    case PowerUp.PowerUpType.FireRateIncrease:
+                        fireRate +=3;
+                        StartCoroutine(DisableFireIncrease());
+                        break;
+                    case PowerUp.PowerUpType.PowerShot:
+                        powerShotEnabled = true;
+                        StartCoroutine(DisablePowerShoot());
+                        break;
+                    case PowerUp.PowerUpType.Ammobox:
+                        int randomAmountOfBullets = Random.Range(minAmountOfBullets, maxAmountOfBullets);
+                        Ammo += randomAmountOfBullets;
+                        break;
+                    case PowerUp.PowerUpType.Medkit:
+                        Health++;
+                        break;
+                }
+                AudioSource.PlayClipAtPoint(itemClip, transform.position);
+                //Destroy(collision.gameObject, 0.1f);
+                DeletePowerUp(collision.gameObject);
             }
-            AudioSource.PlayClipAtPoint(itemClip, transform.position);
-            Destroy(collision.gameObject, 0.1f);
         }
     }
 
@@ -232,5 +235,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             moveDirection = (Vector3) stream.ReceiveNext();
             facingDirection = (Vector2) stream.ReceiveNext();
         }
+    }
+    void DeletePowerUp(GameObject PowerUp){
+        int viewID = PowerUp.GetComponent<PhotonView>().ViewID; 
+        view.RPC("DeletePowerUpRPC", RpcTarget.AllViaServer,viewID);
+    }
+
+    [PunRPC]
+    void DeletePowerUpRPC(int viewID){
+        PhotonNetwork.Destroy(PhotonView.Find(viewID));
     }
 }
