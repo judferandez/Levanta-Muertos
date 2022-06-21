@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviourPunCallbacks
 {
     [SerializeField] float speed = 8;
     [SerializeField] int health = 3;
-    [SerializeField] int scorePoints = 5;
     public bool powerShot;
     PhotonView view;
     float time = 0;
@@ -50,7 +49,6 @@ public class Bullet : MonoBehaviourPunCallbacks
         if (collision.CompareTag("Enemy"))
         {
             int score = collision.GetComponent<Enemy>().TakeDamage();
-            //GameManager.Instance.Score += scorePoints;
             GameManager.Instance.Score += score;
             health--;
 

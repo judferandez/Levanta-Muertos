@@ -102,7 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   health: 3
-  scorePoints: 5
   powerShot: 0
 --- !u!50 &2760944619876848157
 Rigidbody2D:

@@ -28,9 +28,22 @@ public class PowerUp : MonoBehaviour
         {
             int randomTime = Random.Range(itemAvaibleTimeMin, itemAvaibleTimeMax);
             yield return new WaitForSeconds(randomTime);
-            PhotonNetwork.Destroy(gameObject);
+            Debug.Log("si esta por acá");
+            DeletePowerUp(gameObject);
         }
     }
+
+    void DeletePowerUp(GameObject PowerUp){
+        int viewID = view.ViewID; 
+        Debug.Log("llego para destruir afuera");
+        view.RPC("DeletePowerUpRPC", RpcTarget.All,viewID);
+    }
+
+    [PunRPC]
+    void DeletePowerUpRPC(int viewID){
+        PhotonNetwork.Destroy(PhotonView.Find(viewID).gameObject);
+    }
+
 
 
     public PowerUpType powerUpType;
