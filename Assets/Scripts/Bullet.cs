@@ -49,10 +49,7 @@ public class Bullet : MonoBehaviourPunCallbacks
         PhotonView photonView = PhotonView.Get(this);
         if (collision.CompareTag("Enemy"))
         {
-            int score = collision.GetComponent<Enemy>().TakeDamage();
-            //GameManager.Instance.Score += scorePoints;
-            GameManager.Instance.Score += score;
-            health--;
+            collision.GetComponent<Enemy>().TakeDamage();
 
             if(!powerShot || health <= 0)
             {

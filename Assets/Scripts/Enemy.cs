@@ -42,16 +42,15 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public int TakeDamage()
+    public void TakeDamage()
     {
         //int viewId = Player.GetComponent<PhotonView>().ViewID;
         view.RPC("OnTakeDamage", RpcTarget.AllViaServer);
-        return scorePoint;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(view.IsMine){
+        if(view != null && view.IsMine){
             if (collision.CompareTag("Player"))
             {
                 collision.GetComponent<Player>().TakeDamage();
@@ -69,8 +68,13 @@ public class Enemy : MonoBehaviour
             health--;
             if (health <= 0)
             {
-                //Ths need to be done on all clients -> Move this to a new RPC?
-                //GameManager.Instance.Score += scorePoint;
+                
+                //Only the server should handle the score
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    GameManager.Instance.AddScore(scorePoint);
+                }
+                
                 AudioSource.PlayClipAtPoint(enemyDeathClip, transform.position);
                 //
                 PhotonNetwork.Destroy(gameObject);
