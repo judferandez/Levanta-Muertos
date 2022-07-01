@@ -38,7 +38,7 @@ public class ItemSpawner : MonoBehaviour
             yield return new WaitForSeconds(randomTime);
             Vector2 randomPosition = transform.position + (Vector3)(Random.insideUnitCircle * spawnRadius);
             //var checkpointCreated = Instantiate(checkpointPrefab, randomPosition, Quaternion.identity);
-            PhotonNetwork.Instantiate(checkpointPrefab.name,randomPosition,Quaternion.identity);
+            //PhotonNetwork.Instantiate(checkpointPrefab.name,randomPosition,Quaternion.identity);
             //StartCoroutine(DestroyItemRutine(checkpointCreated));
         }
     }

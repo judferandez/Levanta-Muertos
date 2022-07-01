@@ -23,12 +23,12 @@ public class Checkpoint : MonoBehaviour
         if(view.IsMine){
             if (collision.CompareTag("Player"))
             {
-                if(collision.GetComponent<PhotonView>().IsMine){
+                //if(collision.GetComponent<PhotonView>().IsMine){
                 GameManager.Instance.GameTime += addedTime;
                 AudioSource.PlayClipAtPoint(itemClip, transform.position);
 
-                PhotonNetwork.Destroy(gameObject);
-                }
+                DeleteCheckPoint(gameObject);
+                //}
                 
             }
         }
@@ -41,8 +41,21 @@ public class Checkpoint : MonoBehaviour
         {
             int randomTime = Random.Range(itemAvaibleTimeMin, itemAvaibleTimeMax);
             yield return new WaitForSeconds(randomTime);
+            DeleteCheckPoint(gameObject);
+        }
+    }
+
+    void DeleteCheckPoint(GameObject PowerUp){
+        view.RPC("DeleteCheckPointRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void DeleteCheckPointRPC(){
+        if (view.IsMine)
+        {
             PhotonNetwork.Destroy(gameObject);
         }
     }
+
 
 }

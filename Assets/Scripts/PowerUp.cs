@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PowerUp : MonoBehaviour
+public class PowerUp : MonoBehaviourPunCallbacks
 {
     [SerializeField] int itemAvaibleTimeMax = 6;
     [SerializeField] int itemAvaibleTimeMin = 4;
@@ -41,7 +41,10 @@ public class PowerUp : MonoBehaviour
 
     [PunRPC]
     void DeletePowerUpRPC(int viewID){
-        PhotonNetwork.Destroy(PhotonView.Find(viewID).gameObject);
+        if (view.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
 
