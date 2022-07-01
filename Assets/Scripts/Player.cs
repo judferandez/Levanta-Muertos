@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Cinemachine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     bool gunLoaded = true;
     bool powerShotEnabled;
@@ -12,6 +14,8 @@ public class Player : MonoBehaviour
 
     Vector3 moveDirection;
     Vector2 facingDirection;
+    PhotonView view;
+
 
     [SerializeField] float fireRate = 5;
     [SerializeField] float fireRateTime = 6;
@@ -25,10 +29,12 @@ public class Player : MonoBehaviour
     [SerializeField] bool invulnerable;
     [SerializeField] Transform aim;
     [SerializeField] Camera mainCamera;
-    [SerializeField] Transform bulletPrefab;
+    [SerializeField] GameObject bulletPrefab;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] AudioClip itemClip;
+    [SerializeField] CinemachineVirtualCamera vcam;
+
 
     public int Health
     {
@@ -52,26 +58,45 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        view = GetComponent<PhotonView>();
+        mainCamera = Camera.main;
+        if (view.IsMine)
+        {
+            vcam.gameObject.SetActive(true);
+            vcam.Follow = transform;
+            vcam.LookAt = transform;
+        }
+        else{
+            vcam.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        ReadInput();
+        if(view.IsMine){
+            vcam.Follow = transform;
+            vcam.LookAt = transform;
+            ReadInput();
 
-        // Player movement
-        transform.position += moveDirection * Time.deltaTime * speed;
+            // Player movement
+            transform.position += moveDirection * Time.deltaTime * speed;
 
-        // Aim Movement
-        facingDirection = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        aim.position = transform.position + (Vector3)facingDirection.normalized;
+            // Aim Movement
+            facingDirection = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
-        // Shooting Control
-        if (Input.GetMouseButton(0) && gunLoaded && Ammo > 0)
-        {
-            Shoot();
+            // Shooting Control
+            if (Input.GetMouseButton(0) && gunLoaded && Ammo > 0)
+            {
+                Shoot();
+            }
         }
+        
+        
+        //Update Graphics: This should be done on all clients
+        aim.position = transform.position + (Vector3)facingDirection.normalized;
         UpdatePlayerGraphics();
+        
     }
 
     void UpdatePlayerGraphics()
@@ -92,7 +117,7 @@ public class Player : MonoBehaviour
         gunLoaded = false;
         float angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        Transform bulletClone = Instantiate(bulletPrefab, transform.position, targetRotation);
+        GameObject bulletClone = PhotonNetwork.Instantiate(bulletPrefab.name,transform.position,targetRotation);
         if (powerShotEnabled)
         {
             bulletClone.GetComponent<Bullet>().powerShot = true;
@@ -136,28 +161,31 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PowerUp"))
-        {
-            switch (collision.GetComponent<PowerUp>().powerUpType)
+        if(view.IsMine){
+            if (collision.CompareTag("PowerUp"))
             {
-                case PowerUp.PowerUpType.FireRateIncrease:
-                    fireRate +=3;
-                    StartCoroutine(DisableFireIncrease());
-                    break;
-                case PowerUp.PowerUpType.PowerShot:
-                    powerShotEnabled = true;
-                    StartCoroutine(DisablePowerShoot());
-                    break;
-                case PowerUp.PowerUpType.Ammobox:
-                    int randomAmountOfBullets = Random.Range(minAmountOfBullets, maxAmountOfBullets);
-                    Ammo += randomAmountOfBullets;
-                    break;
-                case PowerUp.PowerUpType.Medkit:
-                    Health++;
-                    break;
+                switch (collision.GetComponent<PowerUp>().powerUpType)
+                {
+                    case PowerUp.PowerUpType.FireRateIncrease:
+                        fireRate +=3;
+                        StartCoroutine(DisableFireIncrease());
+                        break;
+                    case PowerUp.PowerUpType.PowerShot:
+                        powerShotEnabled = true;
+                        StartCoroutine(DisablePowerShoot());
+                        break;
+                    case PowerUp.PowerUpType.Ammobox:
+                        int randomAmountOfBullets = Random.Range(minAmountOfBullets, maxAmountOfBullets);
+                        Ammo += randomAmountOfBullets;
+                        break;
+                    case PowerUp.PowerUpType.Medkit:
+                        Health++;
+                        break;
+                }
+                AudioSource.PlayClipAtPoint(itemClip, transform.position);
+                //Destroy(collision.gameObject, 0.1f);
+                DeletePowerUp(collision.gameObject);
             }
-            AudioSource.PlayClipAtPoint(itemClip, transform.position);
-            Destroy(collision.gameObject, 0.1f);
         }
     }
 
@@ -191,5 +219,30 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(fireRateTime);
         fireRate--;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //Send data to other clients
+        if (stream.IsWriting)
+        {
+            stream.SendNext(moveDirection);
+            stream.SendNext(facingDirection);
+        }
+        //Copy data from
+        else if(stream.IsReading)
+        {
+            moveDirection = (Vector3) stream.ReceiveNext();
+            facingDirection = (Vector2) stream.ReceiveNext();
+        }
+    }
+    void DeletePowerUp(GameObject PowerUp){
+        int viewID = PowerUp.GetComponent<PhotonView>().ViewID; 
+        view.RPC("DeletePowerUpRPC", RpcTarget.AllViaServer,viewID);
+    }
+
+    [PunRPC]
+    void DeletePowerUpRPC(int viewID){
+        PhotonNetwork.Destroy(PhotonView.Find(viewID));
     }
 }

@@ -11,17 +11,17 @@ public class River : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
-        originalSpeed = player.speed;
+        //originalSpeed = player.speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            while (player.speed > 1)
-            {
-                player.speed *= speedReductionRatio;
-            }
+            //while (player.speed > 1)
+            //{
+                //player.speed *= speedReductionRatio;
+            //}
         }
     }
 
@@ -29,7 +29,7 @@ public class River : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player.speed = originalSpeed;
+            //player.speed = originalSpeed;
         }
     }
 }

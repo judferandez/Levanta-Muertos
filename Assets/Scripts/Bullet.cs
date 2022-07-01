@@ -1,43 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Bullet : MonoBehaviour
+//holi
+public class Bullet : MonoBehaviourPunCallbacks
 {
     [SerializeField] float speed = 8;
     [SerializeField] int health = 3;
     public bool powerShot;
+    PhotonView view;
+    float time = 0;
+
+    //Avoid calling the Destroy method twice
+    private bool _isDestroyed = false;
 
     private void Start()
     {
-        Destroy(gameObject, 5);
+        view = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        transform.position += transform.right * Time.deltaTime * speed;
+        if (_isDestroyed)
+        {
+            return;
+        }
+        
+        if(view.IsMine){
+            transform.position += transform.right * Time.deltaTime * speed;
+            time += Time.deltaTime;
+            if(time > 5){
+                DestroyBullet();
+            } 
+        }
+        
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (_isDestroyed || view == null || !view.IsMine)
+        {
+            return;
+        }
+        
+        PhotonView photonView = PhotonView.Get(this);
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<Enemy>().TakeDamage();
 
-            if (!powerShot)
+            if(!powerShot || health <= 0)
             {
-                Destroy(gameObject);
-            }
-            health--;
-
-            if(health <= 0)
-            {
-                Destroy(gameObject);
+                DestroyBullet();
             }
         }
+        
         if (collision.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
+    }
+    
+    void DestroyBullet()
+    {
+        _isDestroyed = true;
+        PhotonNetwork.Destroy(gameObject);
     }
 }
