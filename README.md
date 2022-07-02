@@ -32,4 +32,4 @@
 
 
 ## Link del ejecutable
-## [Download in .Zip](./LevantaMuertos.zip)
+## [Download in .Zip](https://github.com/judferandez/Levanta-Muertos/raw/master/LevantaMuertos.zip)
