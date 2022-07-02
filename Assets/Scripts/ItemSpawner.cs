@@ -52,7 +52,7 @@ public class ItemSpawner : MonoBehaviour
             Vector2 randomPosition = transform.position + (Vector3)(Random.insideUnitCircle * spawnRadius);
             int random = Random.Range(0, powerUpPrefab.Length);
             //var powerUpCreated = Instantiate(powerUpPrefab[random], randomPosition, Quaternion.identity);
-            //PhotonNetwork.Instantiate(powerUpPrefab[random].name,randomPosition,Quaternion.identity);
+            PhotonNetwork.Instantiate(powerUpPrefab[random].name,randomPosition,Quaternion.identity);
             //StartCoroutine(DestroyItemRutine(powerUpCreated));
         }
     }

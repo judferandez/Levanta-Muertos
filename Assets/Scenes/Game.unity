@@ -968,10 +968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -2241,10 +2241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -4558,12 +4558,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 1
-  checkPointSpawnDelayMin: 1
-  powerUpSpawnDelayMax: 1
-  powerUpSpawnDelayMin: 1
-  itemAvaibleTimeMax: 5
-  itemAvaibleTimeMin: 2
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
+  itemAvaibleTimeMax: 10
+  itemAvaibleTimeMin: 5
   spawnRadius: 0.5
   checkpointPrefab: {fileID: 8242961380369606364, guid: 0fde967736a065c4c956ae233b32f327, type: 3}
   powerUpPrefab:
@@ -6363,10 +6363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -97732,10 +97732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -99729,10 +99729,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -99964,10 +99964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -100373,10 +100373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 15
-  checkPointSpawnDelayMin: 6
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 6
   itemAvaibleTimeMin: 4
   spawnRadius: 0.5
@@ -101786,10 +101786,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.5
@@ -101898,10 +101898,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0c196785103a844822a0772eec21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointSpawnDelayMax: 10
-  checkPointSpawnDelayMin: 5
-  powerUpSpawnDelayMax: 20
-  powerUpSpawnDelayMin: 5
+  checkPointSpawnDelayMax: 7
+  checkPointSpawnDelayMin: 3
+  powerUpSpawnDelayMax: 10
+  powerUpSpawnDelayMin: 3
   itemAvaibleTimeMax: 10
   itemAvaibleTimeMin: 5
   spawnRadius: 0.7
@@ -103606,7 +103606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2008300712
 MonoBehaviour:
   m_ObjectHideFlags: 0

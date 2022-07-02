@@ -46,15 +46,14 @@ public class Checkpoint : MonoBehaviour
     }
 
     void DeleteCheckPoint(GameObject PowerUp){
-        view.RPC("DeleteCheckPointRPC", RpcTarget.All);
+        view.RPC("DeleteCheckPointRPC", RpcTarget.MasterClient);
     }
 
     [PunRPC]
     void DeleteCheckPointRPC(){
-        if (view.IsMine)
-        {
+
             PhotonNetwork.Destroy(gameObject);
-        }
+        
     }
 
 
