@@ -1,4 +1,5 @@
-# Levanta - Muertos.
+# Introducción al desarrollo de videojuegos
+## Nombre del proyecto: Levanta - Muertos.
 > Universidad Nacional de Colombia, sede Medellín. 2022-2
 
 - [Integrantes](#integrantes)
