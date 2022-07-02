@@ -7,7 +7,7 @@
 - [Versión de unity](#versión-de-unity)
 - [Paquete extras usados](#paquetes-extras-usados)
 - [Imagenes del juego](#imagenes-del-juego)
-- [Link del juego](#link-del-juego)
+- [Link del ejecutable](#link-del-ejecutable)
 
 ---
 ## Integrantes
@@ -31,4 +31,5 @@
 ### ![WhatsApp Image 2022-07-01 at 8 21 15 PM (1)](https://user-images.githubusercontent.com/20862271/176981612-afe50101-f76d-4a4f-b913-93c4b1679484.jpeg)
 
 
-## Link del juego
+## Link del ejecutable
+## [Download in .Zip](./LevantaMuertos.zip)
