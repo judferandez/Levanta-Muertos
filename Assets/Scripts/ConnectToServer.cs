@@ -16,7 +16,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 
     void Update(){
         time +=  Time.deltaTime;
-        if(time > 10){
+        if(time > 60){
             PhotonNetwork.Disconnect();
             SceneManager.LoadScene("MainMenu");
             time =0;
