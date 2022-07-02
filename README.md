@@ -24,8 +24,8 @@
 ### [CryptoCreepers by Platzi](https://drive.google.com/file/d/11bSHbppNK8am7WeROTuTJZv_TErsfPcB/view)
 
 ## Imagenes del juego
-### ![WhatsApp Image 2022-07-01 at 8 21 14 PM](https://user-images.githubusercontent.com/20862271/176981584-eb980747-bbe1-47c6-b04e-78b73a5f9ece.jpeg)
 ### ![WhatsApp Image 2022-07-01 at 8 21 14 PM (1)](https://user-images.githubusercontent.com/20862271/176981603-b399818e-4d48-42e0-95a7-723a9934d767.jpeg)
+### ![WhatsApp Image 2022-07-01 at 8 21 14 PM](https://user-images.githubusercontent.com/20862271/176981584-eb980747-bbe1-47c6-b04e-78b73a5f9ece.jpeg)
 ### ![WhatsApp Image 2022-07-01 at 8 25 18 PM](https://user-images.githubusercontent.com/20862271/176981629-83dc13d2-53a3-43e6-a556-25ccd63f6f22.jpeg)
 ### ![WhatsApp Image 2022-07-01 at 8 21 15 PM](https://user-images.githubusercontent.com/20862271/176981608-406d5263-ed16-4152-83ac-be7a809f391b.jpeg)
 ### ![WhatsApp Image 2022-07-01 at 8 21 15 PM (1)](https://user-images.githubusercontent.com/20862271/176981612-afe50101-f76d-4a4f-b913-93c4b1679484.jpeg)
