@@ -29,22 +29,25 @@ public class PowerUp : MonoBehaviourPunCallbacks
             int randomTime = Random.Range(itemAvaibleTimeMin, itemAvaibleTimeMax);
             yield return new WaitForSeconds(randomTime);
             Debug.Log("si esta por acá");
-            DeletePowerUp(gameObject);
+            DeletePowerUp();
         }
     }
 
-    void DeletePowerUp(GameObject PowerUp){
-        int viewID = view.ViewID; 
+    void DeletePowerUp(){
         Debug.Log("llego para destruir afuera");
-        view.RPC("DeletePowerUpRPC", RpcTarget.All,viewID);
+        view.RPC("DeletePowerUpRPC", RpcTarget.MasterClient);
+    }
+
+    public void OnPowerUpcollected(){
+        view.RPC("DeletePowerUpRPC", RpcTarget.MasterClient);
     }
 
     [PunRPC]
-    void DeletePowerUpRPC(int viewID){
-        if (view.IsMine)
-        {
+    void DeletePowerUpRPC(){
+        //if (view.IsMine)
+        //{
             PhotonNetwork.Destroy(gameObject);
-        }
+        //}
     }
 
 

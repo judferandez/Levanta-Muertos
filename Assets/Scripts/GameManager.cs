@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     private const byte INIT_STATE = 1;
     private const byte SCORE_EVENT_ID = 2;
+    private const byte TIME_EVENT_ID = 3;
     
     public static GameManager Instance;
     
@@ -83,6 +84,23 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         //Send data to all clients
         SendScoreEvent();
     }
+
+    public void AddTime(int seconds)
+    {
+        //Only the server should handle the score
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+        
+        gameTime+=seconds;
+
+        //Update local UI
+        UIManager.Instance.UpdateUITime(gameTime);
+
+        //Send data to all clients
+        SendTimeEvent();
+    }
     
     #region PUN CALLBACKS
 
@@ -116,6 +134,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
         PhotonNetwork.RaiseEvent(SCORE_EVENT_ID, content, raiseEventOptions, SendOptions.SendReliable);
     }
+
+    
+    private void SendTimeEvent()
+    {
+        object[] content = new object[] { gameTime };
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        PhotonNetwork.RaiseEvent(TIME_EVENT_ID, content, raiseEventOptions, SendOptions.SendReliable);
+    }
     
     public void OnEvent(EventData photonEvent)
     {
@@ -128,6 +154,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         else if (eventCode == SCORE_EVENT_ID)
         {
             OnScoreEvent(photonEvent);
+        }
+        else if(eventCode == TIME_EVENT_ID){
+            OnTimeEvent(photonEvent);
         }
     }
     
@@ -157,6 +186,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IOnEventCallback
         difficulty = serveDifficulty;
             
         UIManager.Instance.UpdateUIScore(score);
+    }
+
+    
+
+    private void OnTimeEvent(EventData photonEvent)
+    {
+        object[] data = (object[])photonEvent.CustomData;
+
+        int serverTime = (int)data[0];
+
+        gameTime = serverTime;
+            
+        UIManager.Instance.UpdateUITime(gameTime);
     }
     #endregion
     
