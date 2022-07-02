@@ -15,7 +15,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     Vector3 moveDirection;
     Vector2 facingDirection;
     PhotonView view;
-
+    GameObject powerUp;
 
     [SerializeField] float fireRate = 5;
     [SerializeField] float fireRateTime = 6;
@@ -34,6 +34,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] AudioClip itemClip;
     [SerializeField] CinemachineVirtualCamera vcam;
+
+
 
 
     public int Health
@@ -183,8 +185,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                         break;
                 }
                 AudioSource.PlayClipAtPoint(itemClip, transform.position);
-                //Destroy(collision.gameObject, 0.1f);
-                DeletePowerUp(collision.gameObject);
+                collision.GetComponent<PowerUp>().OnPowerUpcollected();
             }
         }
     }
@@ -235,14 +236,5 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             moveDirection = (Vector3) stream.ReceiveNext();
             facingDirection = (Vector2) stream.ReceiveNext();
         }
-    }
-    void DeletePowerUp(GameObject PowerUp){
-        int viewID = PowerUp.GetComponent<PhotonView>().ViewID; 
-        view.RPC("DeletePowerUpRPC", RpcTarget.AllViaServer,viewID);
-    }
-
-    [PunRPC]
-    void DeletePowerUpRPC(int viewID){
-        PhotonNetwork.Destroy(PhotonView.Find(viewID));
     }
 }
