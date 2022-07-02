@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 2381521}
   - component: {fileID: 2381524}
   - component: {fileID: 2381523}
-  - component: {fileID: 2381522}
   m_Layer: 0
   m_Name: River4
   m_TagString: Untagged
@@ -156,19 +155,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2381522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2381520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &2381523
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -703,7 +689,6 @@ GameObject:
   - component: {fileID: 64086216}
   - component: {fileID: 64086219}
   - component: {fileID: 64086218}
-  - component: {fileID: 64086217}
   m_Layer: 0
   m_Name: River2
   m_TagString: Untagged
@@ -725,19 +710,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &64086217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64086215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &64086218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1047,7 +1019,6 @@ GameObject:
   - component: {fileID: 102411575}
   - component: {fileID: 102411578}
   - component: {fileID: 102411577}
-  - component: {fileID: 102411576}
   m_Layer: 0
   m_Name: River3
   m_TagString: Untagged
@@ -1069,19 +1040,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &102411576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102411574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &102411577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3063,7 +3021,6 @@ GameObject:
   - component: {fileID: 413261956}
   - component: {fileID: 413261959}
   - component: {fileID: 413261958}
-  - component: {fileID: 413261957}
   m_Layer: 0
   m_Name: River6
   m_TagString: Untagged
@@ -3085,19 +3042,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &413261957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413261955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &413261958
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3295,7 +3239,6 @@ GameObject:
   - component: {fileID: 430926370}
   - component: {fileID: 430926373}
   - component: {fileID: 430926372}
-  - component: {fileID: 430926371}
   m_Layer: 0
   m_Name: River7
   m_TagString: Untagged
@@ -3317,19 +3260,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &430926371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430926369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &430926372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3493,7 +3423,6 @@ GameObject:
   - component: {fileID: 459388738}
   - component: {fileID: 459388741}
   - component: {fileID: 459388740}
-  - component: {fileID: 459388739}
   m_Layer: 0
   m_Name: River13
   m_TagString: Untagged
@@ -3515,19 +3444,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &459388739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 459388737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &459388740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4828,7 +4744,6 @@ GameObject:
   - component: {fileID: 584276858}
   - component: {fileID: 584276861}
   - component: {fileID: 584276860}
-  - component: {fileID: 584276859}
   m_Layer: 0
   m_Name: River9
   m_TagString: Untagged
@@ -4850,19 +4765,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &584276859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584276857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &584276860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5143,7 +5045,6 @@ GameObject:
   - component: {fileID: 609477313}
   - component: {fileID: 609477316}
   - component: {fileID: 609477315}
-  - component: {fileID: 609477314}
   m_Layer: 0
   m_Name: River5
   m_TagString: Untagged
@@ -5165,19 +5066,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &609477314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609477312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &609477315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5266,7 +5154,6 @@ GameObject:
   - component: {fileID: 619965353}
   - component: {fileID: 619965356}
   - component: {fileID: 619965355}
-  - component: {fileID: 619965354}
   m_Layer: 0
   m_Name: River12
   m_TagString: Untagged
@@ -5288,19 +5175,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &619965354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619965352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &619965355
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7004,7 +6878,6 @@ GameObject:
   - component: {fileID: 823730026}
   - component: {fileID: 823730029}
   - component: {fileID: 823730028}
-  - component: {fileID: 823730027}
   m_Layer: 0
   m_Name: River8
   m_TagString: Untagged
@@ -7026,19 +6899,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &823730027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823730025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &823730028
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98214,7 +98074,6 @@ GameObject:
   - component: {fileID: 1203672027}
   - component: {fileID: 1203672030}
   - component: {fileID: 1203672029}
-  - component: {fileID: 1203672028}
   m_Layer: 0
   m_Name: River11
   m_TagString: Untagged
@@ -98236,19 +98095,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1203672028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203672026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &1203672029
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98606,7 +98452,6 @@ GameObject:
   - component: {fileID: 1268746332}
   - component: {fileID: 1268746335}
   - component: {fileID: 1268746334}
-  - component: {fileID: 1268746333}
   m_Layer: 0
   m_Name: River15
   m_TagString: Untagged
@@ -98628,19 +98473,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1268746333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268746331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &1268746334
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99808,7 +99640,6 @@ GameObject:
   - component: {fileID: 1389644639}
   - component: {fileID: 1389644642}
   - component: {fileID: 1389644641}
-  - component: {fileID: 1389644640}
   m_Layer: 0
   m_Name: River
   m_TagString: Untagged
@@ -99830,19 +99661,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1389644640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389644638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &1389644641
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100636,7 +100454,6 @@ GameObject:
   - component: {fileID: 1603639070}
   - component: {fileID: 1603639073}
   - component: {fileID: 1603639072}
-  - component: {fileID: 1603639071}
   m_Layer: 0
   m_Name: River10
   m_TagString: Untagged
@@ -100658,19 +100475,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1603639071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603639069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &1603639072
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103072,7 +102876,6 @@ GameObject:
   - component: {fileID: 1931629982}
   - component: {fileID: 1931629985}
   - component: {fileID: 1931629984}
-  - component: {fileID: 1931629983}
   m_Layer: 0
   m_Name: River14
   m_TagString: Untagged
@@ -103094,19 +102897,6 @@ Transform:
   m_Father: {fileID: 57209862}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1931629983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931629981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4f6376506c6ae489810e4c5f8ac7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReductionRatio: 0.5
 --- !u!61 &1931629984
 BoxCollider2D:
   m_ObjectHideFlags: 0
