@@ -24,7 +24,7 @@ public class Checkpoint : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 //if(collision.GetComponent<PhotonView>().IsMine){
-                GameManager.Instance.GameTime += addedTime;
+                GameManager.Instance.AddTime(addedTime);
                 AudioSource.PlayClipAtPoint(itemClip, transform.position);
 
                 DeleteCheckPoint(gameObject);
