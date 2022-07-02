@@ -32,4 +32,5 @@
 
 
 ## Link del ejecutable
-## [Download in .Zip](https://github.com/judferandez/Levanta-Muertos/raw/master/LevantaMuertos.zip)
+### [Download in .Zip for Windows](https://github.com/judferandez/Levanta-Muertos/raw/master/LevantaMuertos.zip)
+### [Download in .Zip for Mac](https://github.com/judferandez/Levanta-Muertos/raw/master/LevantaMuertosMac.zip)
